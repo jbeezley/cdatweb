@@ -1,4 +1,5 @@
 import sys
+import tempfile
 import traceback
 
 class PlotFactory(object):
@@ -105,6 +106,7 @@ class VcsPlot(Plot):
         self._canvas.clear()
         self._file = cdms2.open(filename)
 
+        self._canvas.setbgoutputdimensions(564,400,units='pixels')
         varlist = self._file.plot_these
         if isinstance(varlist,list):
             for i in varlist:
@@ -117,10 +119,22 @@ class VcsPlot(Plot):
             d = self._canvas.plot(data,self._config['template'],self._file.presentation,bg=1)
 
         png = d._repr_png_()
-        f=open("/export/leung25/test.png",'w')
-        f.write(png)
+
+        tmp=tempfile.mktemp()+".png"
+        self._canvas.png(tmp)
+        f=open(tmp)
+        mypng=f.read()
         f.close()
-        png = base64.b64encode(png)
+        f=open("/export/leung25/test.png",'w')
+        f.write(mypng)
+        f.close()
+        png = base64.b64encode(mypng)
+
+
+        #f=open("/export/leung25/test.png",'w')
+        #f.write(png)
+        #f.close()
+        #png = base64.b64encode(png)
         return self.toJSON(png, True, datetime.datetime.now().time().microsecond,
                            [self.image_width, self.image_height], "png;base64", options['view'], "", "")
 
