@@ -366,6 +366,16 @@ uvis.plot = function(nodeId, args) {
       typeof callback === 'function' && callback(data);
     }, function(msg){ console.log('[error] ', msg)});
   };
+
+  this.displaySize = function() {
+    var ctxs = $(m_nodeId + " > .renderers > canvas");
+    
+    if (ctxs.length) {
+      return [ctxs[0].width(), ctxs[0].height()];
+    }
+
+    throw "Valid context not found";
+  }
 };
 
 //////////////////////////////////////////////////////////////////////////////
