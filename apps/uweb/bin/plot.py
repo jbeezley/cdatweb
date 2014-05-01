@@ -104,6 +104,8 @@ class VcsPlot(Plot):
         filename = self._data['filename']
         variable = self._data['variable']
         self._canvas.clear()
+        self._canvas.open()
+        self._canvas.geometry(564,400)
         self._file = cdms2.open(filename)
 
         self._canvas.setbgoutputdimensions(564,400,units='pixels')
@@ -112,13 +114,13 @@ class VcsPlot(Plot):
             for i in varlist:
                 variable = 1
                 data = self._file(variable)
-                d = self._canvas.plot(data,self.plotTemplate,self._file.presentation,bg=1)
+                d = self._canvas.plot(data,self.plotTemplate,self._file.presentation,bg=0)
         else:
             variable=varlist
             data = self._file(variable)
-            d = self._canvas.plot(data,self._config['template'],self._file.presentation,bg=1)
+            d = self._canvas.plot(data,self._config['template'],self._file.presentation,bg=0)
 
-        png = d._repr_png_()
+        #png = d._repr_png_()
 
         tmp=tempfile.mktemp()+".png"
         self._canvas.png(tmp)

@@ -371,7 +371,8 @@ uvis.plot = function(nodeId, args) {
     var ctxs = $(m_nodeId + " > .renderers > canvas");
     
     if (ctxs.length) {
-      return [ctxs[0].width(), ctxs[0].height()];
+      var ctx = $(ctxs[0]);  
+      return [ctx.width(), ctx.height()];
     }
 
     throw "Valid context not found";
