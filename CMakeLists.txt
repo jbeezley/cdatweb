@@ -13,6 +13,7 @@ list(APPEND CMAKE_MODULE_PATH "${uvis_SOURCE_DIR}/cmake")
 option(UVIS_ENABLE_UVCDAT "UVIS uses UVCDAT" ON)
 option(UVIS_ENABLE_PARAVIEW "UVIS uses UVCDAT" ON)
 option(UVIS_ENABLE_DJANGO "UVIS uses Django" ON)
+set(DV3D_CLONE_PARENT_DIR /usr/local/uvis CACHE STRING "Directory where you cloned uvis_dv3d into (w/o uvis_3d)")
 
 # Variable used for configuring runtime scripts
 set(SOURCE_UVCDAT)

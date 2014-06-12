@@ -1,4 +1,5 @@
 import sys
+sys.path.insert(0,"/usr/local/uvis/uvis_dv3d/src.git")
 import traceback
 
 class PlotFactory(object):
@@ -232,8 +233,8 @@ from vtk.vtkWebCorePython import vtkWebApplication
 from vtk.web.protocols import vtkWebMouseHandler, vtkWebViewPortImageDelivery
 import os.path, sys, argparse
 from PyQt4 import QtCore, QtGui
-from packages.CPCViewer.DistributedPointCollections import kill_all_zombies
-from packages.CPCViewer.PointCloudViewer import CPCPlot
+from uvis_dv3d.DistributedPointCollections import kill_all_zombies
+from uvis_dv3d.PointCloudViewer import CPCPlot
 import multiprocessing
 
 class DV3DPlot(Plot):
